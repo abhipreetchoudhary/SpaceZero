@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceZero - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Launching into space...</p>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h1>Abhipreet's Space</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#resume" class="nav-link">Resume</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+            <li><a href="#" class="nav-link" onclick="toggleSpaceInvaders()">🎮 Retro Game</a></li>
+        </ul>
+    </nav>
+
+    <div id="space-container">
+        <canvas id="space-canvas"></canvas>
+        
+        <!-- Space Invaders Game Container -->
+        <div id="space-invaders-container" class="game-container hidden">
+            <div class="game-header">
+                <h2>🚀 SPACE INVADERS 90s EDITION 🚀</h2>
+                <div class="game-controls">
+                    <span>Score: <span id="game-score">0</span></span>
+                    <span>Lives: <span id="game-lives">3</span></span>
+                    <span>Level: <span id="game-level">1</span></span>
+                    <button onclick="pauseGame()" id="pause-btn">PAUSE</button>
+                    <button onclick="toggleSpaceInvaders()" class="close-game-btn">✕ CLOSE</button>
+                </div>
+            </div>
+            <canvas id="game-canvas"></canvas>
+            <div class="game-instructions">
+                <p><strong>Controls:</strong> ← → Arrow Keys to Move | SPACEBAR to Shoot | P to Pause</p>
+                <p><strong>Mission:</strong> Destroy all alien invaders before they reach Earth!</p>
+            </div>
+        </div>
+        
+        <!-- HUD Elements -->
+        <div class="hud-overlay">
+            <div class="space-stats">
+                <div class="stat">
+                    <span class="stat-label">Mission Time</span>
+                    <span class="stat-value" id="mission-time">00:00:00</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Objects Detected</span>
+                    <span class="stat-value">15+</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Info Panels -->
+        <div id="earth-info" class="info-panel">
+            <h3>Home Base Earth</h3>
+            <p>Full Stack Developer specializing in Java & Python ecosystems</p>
+            <button class="explore-btn" onclick="showSection('about')">Explore Profile</button>
+        </div>
+
+        <div id="moon-info" class="info-panel">
+            <h3>Project Laboratory</h3>
+            <p>Banking, Healthcare & E-commerce solutions</p>
+            <button class="explore-btn" onclick="showSection('projects')">View Projects</button>
+        </div>
+
+        <div id="rocket-info" class="info-panel">
+            <h3>Career Spacecraft</h3>
+            <p>Wipro Limited | Microservices & AI Integration</p>
+            <button class="explore-btn" onclick="showSection('resume')">Access Resume</button>
+        </div>
+    </div>
+
+    <!-- Content Sections -->
+    <section id="home" class="content-section active">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to Abhipreet's Universe</h1>
+            <p class="hero-subtitle">Full Stack Developer exploring the infinite possibilities of technology and innovation</p>
+            <div class="hero-actions">
+                <button class="cta-button primary" onclick="showSection('resume')">
+                    <span>Launch Resume</span>
+                    <div class="button-glow"></div>
+                </button>
+                <button class="cta-button secondary" onclick="showSection('contact')">
+                    <span>Establish Contact</span>
+                </button>
+                <button class="cta-button retro-game" onclick="toggleSpaceInvaders()">
+                    <span>🎮 Play Retro Game</span>
+                    <div class="button-glow retro-glow"></div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="content-section">
+        <div class="section-container">
+            <h2 class="section-title">Mission Commander</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Greetings from the cosmos! I'm Abhipreet Choudhary, a passionate Full Stack Developer with expertise in both Java and Python ecosystems.</p>
+                    <p>With experience building secure, scalable systems for banking, retail, and healthcare domains, I specialize in Spring Boot, Angular, React, and microservices architecture. I'm passionate about clean architecture, AI integration, and continuous learning through innovative proof-of-concept projects.</p>
+                    <div class="skills-grid">
+                        <div class="skill-item">Java & Spring Boot</div>
+                        <div class="skill-item">Python & FastAPI</div>
+                        <div class="skill-item">React & Angular</div>
+                        <div class="skill-item">Microservices Architecture</div>
+                        <div class="skill-item">AI/ML Integration</div>
+                        <div class="skill-item">RESTful APIs</div>
+                        <div class="skill-item">JWT Authentication</div>
+                        <div class="skill-item">Healthcare Technology</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="content-section">
+        <div class="section-container">
+            <h2 class="section-title">Professional Profile</h2>
+            
+            <!-- Professional Summary -->
+            <div class="resume-section">
+                <h3 class="resume-section-title">Professional Summary</h3>
+                <p class="resume-summary">
+                    Full stack developer with expertise in both Java and Python ecosystems. Experienced in building secure, scalable systems for banking, retail, and healthcare domains. Skilled in Spring Boot, Angular, React, and microservices architecture. Passionate about clean architecture, AI integration, and continuous learning through multiple proof-of-concept projects.
+                </p>
+            </div>
+
+            <!-- Experience -->
+            <div class="resume-section">
+                <h3 class="resume-section-title">Professional Experience</h3>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h4>Project Engineer | Full Stack Developer</h4>
+                        <span class="experience-company">Wipro Limited, Greater Noida</span>
+                        <span class="experience-period">2024 - Present</span>
+                    </div>
+                    <ul class="experience-achievements">
+                        <li>Developed two secure and tested proof-of-concepts (POC) (Banking Management System and Online Retail Store) using Java, Spring Boot, React, Angular, and microservices architecture</li>
+                        <li>Implemented Swagger documentation and maintained ACID properties in distributed transactions</li>
+                        <li>Built JWT authentication layer and developed scalable RESTful APIs with 40% latency reduction</li>
+                        <li>Designed and implemented a real-time medical transcription system for an internal healthcare solution using Python (FastAPI), Whisper model, and pyannote pipeline</li>
+                        <li>Implemented RAG pipeline using Tavily API + Gemini Flash 2.0 for symptom-based follow-up prompts</li>
+                        <li>Developed React frontend for live doctor-patient interaction summaries</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="resume-section">
+                <h3 class="resume-section-title">Education</h3>
+                <div class="education-item">
+                    <h4>Bachelor of Technology in Computer Science and Engineering</h4>
+                    <p class="education-institution">Dr. A.P.J. Abdul Kalam Technical University MIET | 2022</p>
+                </div>
+            </div>
+
+            <!-- Technical Skills -->
+            <div class="resume-section">
+                <h3 class="resume-section-title">Technical Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h5>Languages</h5>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">SQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h5>Frameworks</h5>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Spring Boot</span>
+                            <span class="skill-tag">Angular</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">FastAPI</span>
+                            <span class="skill-tag">Hibernate</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h5>Tools & Technologies</h5>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub Copilot</span>
+                            <span class="skill-tag">Maven</span>
+                            <span class="skill-tag">Postman</span>
+                            <span class="skill-tag">Swagger</span>
+                            <span class="skill-tag">Linux</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h5>Architectures</h5>
+                        <div class="skill-tags">
+                            <span class="skill-tag">RESTful APIs</span>
+                            <span class="skill-tag">Microservices</span>
+                            <span class="skill-tag">MVC</span>
+                            <span class="skill-tag">JWT</span>
+                            <span class="skill-tag">RAG</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="resume-section">
+                <h3 class="resume-section-title">Certifications</h3>
+                <div class="certifications-list">
+                    <div class="certification-item">
+                        <h5>Step Plus (Wipro Internal) - English Language L1</h5>
+                        <span class="cert-date">December 2024</span>
+                    </div>
+                    <div class="certification-item">
+                        <h5>GitHub Copilot Technical (Wipro Internal) - GitHub Copilot L3</h5>
+                        <span class="cert-date">February 2025</span>
+                    </div>
+                    <div class="certification-item">
+                        <h5>Java Certification (Wipro Internal) - Core Java L1</h5>
+                        <span class="cert-date">June 2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-actions">
+                <button class="download-btn" onclick="downloadResume()">
+                    <span>Download Resume</span>
+                    <i class="download-icon">⬇</i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="content-section">
+        <div class="section-container">
+            <h2 class="section-title">Space Missions</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Banking Management System</h3>
+                    <p>Secure financial platform with account management, fund transfers, and transaction history. Achieved 99.9% data consistency through distributed transaction management.</p>
+                    <div class="project-tech">
+                        <span>Java</span>
+                        <span>Spring Boot</span>
+                        <span>Angular</span>
+                        <span>Microservices</span>
+                        <span>JWT Authentication</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Online Retail Store</h3>
+                    <p>Complete e-commerce platform with product catalog, cart, and checkout system. Reduced latency by 40% through query optimization and indexing.</p>
+                    <div class="project-tech">
+                        <span>Java</span>
+                        <span>Spring Boot</span>
+                        <span>React</span>
+                        <span>SQL</span>
+                        <span>Swagger</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Doctor-Patient Interaction Scribe</h3>
+                    <p>Real-time medical transcription system with AI integration. Implemented RAG pipeline for symptom-based follow-up questions and diagnostic support.</p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>FastAPI</span>
+                        <span>Whisper AI</span>
+                        <span>React</span>
+                        <span>RAG Pipeline</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="content-section">
+        <div class="section-container">
+            <h2 class="section-title">Establish Communication</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Ready for your next mission?</h3>
+                    <p>Let's connect and explore the possibilities of technology together!</p>
+                    <p class="connection-note">Choose your preferred communication channel below:</p>
+                    <div class="contact-links">
+                        <a href="mailto:abhipreet.choudhary@wipro.com" class="contact-link">
+                            <span>📧</span>
+                            <span>Email</span>
+                        </a>
+                        <a href="tel:+918279351865" class="contact-link">
+                            <span>📱</span>
+                            <span>Call</span>
+                        </a>
+                        <a href="https://linkedin.com/in/abhipreet-choudhary" class="contact-link">
+                            <span>💼</span>
+                            <span>LinkedIn Profile</span>
+                        </a>
+                        <a href="https://github.com/abhipreet-choudhary" class="contact-link">
+                            <span>⚡</span>
+                            <span>GitHub Portfolio</span>
+                        </a>
+                    </div>
+                    <div class="availability-status">
+                        <h4>🚀 Status: Available for New Opportunities</h4>
+                        <p>Open to discussing full-stack development projects, collaboration opportunities, and innovative technology solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
